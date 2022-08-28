@@ -12,10 +12,24 @@
             "type": "string",
             "title": "The telegram bot token",
             "pattern": "^[0-9]{8,10}:[a-zA-Z0-9_-]{35}$"
+        },
+        "logLevel": {
+            "type": "string",
+            "title": "The minimum level of logging",
+            "enum": [
+                "error",
+                "warn",
+                "info",
+                "http",
+                "verbose",
+                "debug",
+                "silly"
+            ]
         }
     },
     "required": [
         "$schema",
-        "token"
+        "token",
+        "logLevel"
     ]
 }

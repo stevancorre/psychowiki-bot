@@ -1,4 +1,5 @@
 {
     "$schema": "schemas/appconfig.schema.json",
-    "token": "YOUR TELEGRAM BOT TOKEn"
+    "token": "YOUR TELEGRAM BOT TOKEN",
+    "logLevel": "info"
 }
