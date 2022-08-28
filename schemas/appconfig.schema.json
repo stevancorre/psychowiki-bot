@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "PsychoWiki bot configuration",
+    "description": "The configuration for the PsychoWiki Telegram bot",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "$schema": {
+            "type": "string"
+        },
+        "token": {
+            "type": "string",
+            "title": "The telegram bot token",
+            "pattern": "^[0-9]{8,10}:[a-zA-Z0-9_-]{35}$"
+        }
+    },
+    "required": [
+        "$schema",
+        "token"
+    ]
+}
