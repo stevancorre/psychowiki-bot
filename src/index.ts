@@ -1,9 +1,12 @@
 import { Telegraf } from "telegraf";
 
+import { registerCommands } from "./core/command";
 import appConfig from "./core/configuration";
 import logger from "./core/logging";
 
 const bot = new Telegraf(appConfig.token);
+
+registerCommands(bot);
 
 bot.launch()
     .then(() => logger.info("Ready"))
