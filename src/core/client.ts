@@ -1,7 +1,6 @@
 import { Telegraf } from "telegraf";
 
 import { commands } from "../commands";
-
 import logger from "./logging";
 
 export const registerCommands = (bot: Telegraf) => {
