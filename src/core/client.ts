@@ -8,6 +8,8 @@ export const registerCommands = (bot: Telegraf) => {
         bot.command(command.name, command.handler);
     }
 
+    logger.info(`Registered ${commands.length} commands`);
+
     // todo: set bot commands
 };
 
