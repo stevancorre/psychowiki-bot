@@ -1,9 +1,21 @@
 import { Telegraf } from "telegraf";
 
 import appConfig from "./core/configuration";
+import logger from "./core/logging";
 
 const bot = new Telegraf(appConfig.token);
-bot.launch();
 
-process.once("SIGINT", () => bot.stop("SIGINT"));
-process.once("SIGTERM", () => bot.stop("SIGTERM"));
+bot.launch()
+    .then(() => logger.info("Ready"))
+    .catch(logger.crit);
+
+// handle signals
+process.once("SIGINT", () => {
+    logger.info("Stopped by SIGINT");
+    bot.stop("SIGINT");
+});
+
+process.once("SIGTERM", () => {
+    logger.info("Stopped by SIGTERM");
+    bot.stop("SIGTERM");
+});
