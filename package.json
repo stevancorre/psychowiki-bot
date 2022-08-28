@@ -1,0 +1,44 @@
+{
+    "private": true,
+    "name": "psychowiki-bot",
+    "version": "1.0.0",
+    "description": "The PsychoWiki Bot's source code",
+    "license": "MIT",
+    "author": "Stévan Corre <me@stevancorre.com> (https://stevancorre.com)",
+    "homepage": "https://github.com/stevancorre/psychowiki-bot#readme",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/stevancorre/psychowiki-bot.git"
+    },
+    "bugs": {
+        "url": "https://github.com/stevancorre/psychowiki-bot/issues"
+    },
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "eslint . --fix && tsup --config tsup.config.prod.ts",
+        "dev": "eslint . --fix && tsup --watch --config tsup.config.dev.ts",
+        "preinstall": "npx only-allow pnpm",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "start": "eslint . --fix && tsup --config tsup.config.prod.ts && node dist/index.js"
+    },
+    "devDependencies": {
+        "@types/node": "^18.7.13",
+        "@typescript-eslint/eslint-plugin": "^5.35.1",
+        "@typescript-eslint/parser": "^5.35.1",
+        "eslint": "^8.23.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "prettier": "^2.7.1",
+        "tsup": "^6.2.3",
+        "typescript": "4.7.4"
+    },
+    "keywords": [
+        "Bot",
+        "Drug",
+        "Psychoactive",
+        "Psychonaut",
+        "Substances",
+        "Telegram"
+    ]
+}
