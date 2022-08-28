@@ -3,6 +3,12 @@ import { Telegraf } from "telegraf";
 import { commands } from "../commands";
 import logger from "./logging";
 
+export const registerCatch = (bot: Telegraf) => {
+    bot.catch((error: unknown) => {
+        logger.error(error);
+    });
+};
+
 export const registerCommands = (bot: Telegraf) => {
     for (const command of commands) {
         bot.command(command.name, command.handler);
