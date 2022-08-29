@@ -8,10 +8,10 @@ export const registerCatch = (bot: Telegraf) => {
         logger.error(error);
     });
 };
-
 export const registerCommands = (bot: Telegraf) => {
     for (const command of commands) {
-        bot.command(command.name, command.handler);
+        const [first, ...rest] = [...(command.middlewares ?? []), command.handler];
+        bot.command(command.name, first, ...rest);
     }
 
     logger.info(`Registered ${commands.length} commands`);
