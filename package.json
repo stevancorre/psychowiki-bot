@@ -23,7 +23,9 @@
         "start": "eslint . --fix && tsup --config tsup.config.prod.ts && node dist/index.js"
     },
     "dependencies": {
+        "axios": "^0.27.2",
         "telegraf": "^4.9.0",
+        "telegraf-paginator": "link:../telegraf-paginator",
         "winston": "^3.8.1"
     },
     "devDependencies": {

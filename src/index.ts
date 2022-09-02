@@ -11,3 +11,5 @@ registerCommands(bot);
 startClient(bot);
 
 handleSignals(bot);
+
+export default bot;
