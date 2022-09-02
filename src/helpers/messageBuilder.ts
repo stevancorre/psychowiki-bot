@@ -1,5 +1,5 @@
-import { StringBuilder } from "./stringBuilder";
 import { MessageCategoryBuilder } from "./messageCategoryBuilder";
+import { StringBuilder } from "./stringBuilder";
 
 export class MessageBuilder extends StringBuilder {
     private categoriesSpaceCount = 2;
