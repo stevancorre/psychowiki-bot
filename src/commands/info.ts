@@ -42,6 +42,7 @@ const InfoCommand: Command = {
 
                 await ctx.reply(paginator.text(), paginator.extra());
                 // dw abt this
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 paginator.handleAction(bot as unknown as any);
             })
             .catch((err) => {
@@ -103,9 +104,9 @@ const buildTolerance = (substance: Substance): string =>
 const buildAddictionPotential = (substance: Substance): string =>
     new StringBuilder()
         .appendCategoryTitle("⚠️", "Addiction potential")
-        // TODO: accept <string | null> to avoid having <>! + eslint-disable rule
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         .appendIf(substance.addictionPotential !== null, (builder) =>
+            // TODO: accept <string | null> to avoid having <>! + eslint-disable rule
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             builder.appendLine(capitalize(substance.addictionPotential!)),
         )
         .getContent();
