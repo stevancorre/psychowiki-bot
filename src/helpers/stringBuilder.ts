@@ -32,9 +32,9 @@ export class StringBuilder {
         return this.append(content).append("\n");
     }
 
-    public appendLineIf(content: string, condition: boolean): StringBuilder {
+    public appendIf(condition: boolean, func: (builder: StringBuilder) => void): StringBuilder {
         if (condition) {
-            this.appendLine(content);
+            func(this);
         }
 
         return this;

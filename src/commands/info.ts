@@ -105,5 +105,7 @@ const buildAddictionPotential = (substance: Substance): string =>
         .appendCategoryTitle("⚠️", "Addiction potential")
         // TODO: accept <string | null> to avoid having <>! + eslint-disable rule
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        .appendLineIf(capitalize(substance.addictionPotential!), substance.addictionPotential !== null)
+        .appendIf(substance.addictionPotential !== null, (builder) =>
+            builder.appendLine(capitalize(substance.addictionPotential!)),
+        )
         .getContent();
