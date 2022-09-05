@@ -19,8 +19,12 @@ export class StringBuilder {
 
     public appendCategoryTitle(icon: string, title: string) {
         this.categoryTitle = title;
-        this.notContentLength += title.length;
-        return this.appendLineInTags(`${icon} ${title}`, "b", "u");
+
+        const before = this.content.length;
+        this.appendLineInTags(`${icon} ${title}`, "b", "u");
+        this.notContentLength += this.content.length - before;
+
+        return this;
     }
 
     public append(content: string): StringBuilder {
@@ -98,6 +102,11 @@ export class StringBuilder {
     }
 
     public getContent(): string {
+        console.log("---------------");
+        console.log(this.notContentLength);
+        console.log(this.content.length);
+        console.log(this.content);
+        console.log("---------------");
         if (this.categoryTitle && this.notContentLength === this.content.length)
             this.appendLineInTags(`No ${this.categoryTitle?.toLowerCase()} infos`, "i");
 
