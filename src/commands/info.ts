@@ -6,8 +6,7 @@ import bot from "..";
 import { API_ENDPOINT } from "../constants/PsychonautWiki";
 import { Command } from "../core/command";
 import { capitalize, formatMinMax } from "../helpers/formatters";
-import { MessageBuilder } from "../helpers/messageBuilder";
-import { MessageCategoryBuilder } from "../helpers/messageCategoryBuilder";
+import { StringBuilder } from "../helpers/stringBuilder";
 import substanceMiddleware from "../middlewares/substanceMiddleware";
 import infoQuery from "../queries/info";
 import durationAliases from "../tables/durationAliases";
@@ -54,84 +53,57 @@ const InfoCommand: Command = {
 export default InfoCommand;
 
 const buildHeader = (substance: Substance): string =>
-    new MessageBuilder().appendTitle(`${substance.name} drug information`, substance.url).getContent();
+    new StringBuilder().appendTitle(`${substance.name} drug information`, substance.url).getContent();
 
-const buildDosage = (substance: Substance): string => {
-    const dosages: MessageCategoryBuilder = new MessageCategoryBuilder("⚖️", "Dosage");
-    for (const roa of substance.roas) {
-        if (!roa || !roa.dose || !roa.dose.units) {
-            continue;
-        }
+const buildDosage = (substance: Substance): string =>
+    new StringBuilder()
+        .appendCategoryTitle("⚖️", "Dosage")
+        .appendFor(substance.roas, (builder, roa) => {
+            if (!roa.dose || !roa.dose.units) return;
 
-        dosages.appendLineInTags(`(${capitalize(roa.name)})`, "i");
+            builder
+                .appendLineInTags(`(${capitalize(roa.name)})`, "i")
+                .appendField("Threshold", formatMinMax(roa.dose.threshold, roa.dose.units))
+                .appendField("Light", formatMinMax(roa.dose.light, roa.dose.units))
+                .appendField("Common", formatMinMax(roa.dose.common, roa.dose.units))
+                .appendField("Strong", formatMinMax(roa.dose.strong, roa.dose.units))
+                .appendField("Heavy", formatMinMax(roa.dose.heavy, roa.dose.units))
+                .appendNewLines(1);
+        })
+        .getContent();
 
-        dosages.appendField("Threshold", formatMinMax(roa.dose.threshold, roa.dose.units));
-        dosages.appendField("Light", formatMinMax(roa.dose.light, roa.dose.units));
-        dosages.appendField("Common", formatMinMax(roa.dose.common, roa.dose.units));
-        dosages.appendField("Strong", formatMinMax(roa.dose.strong, roa.dose.units));
-        dosages.appendField("Heavy", formatMinMax(roa.dose.heavy, roa.dose.units));
+const buildDuration = (substance: Substance): string =>
+    new StringBuilder()
+        .appendCategoryTitle("🕐", "Duration")
+        .appendFor(substance.roas, (builder, roa) => {
+            if (!roa?.duration) return;
 
-        dosages.appendNewLines(1);
-    }
+            const { onset, comeup, peak, offset, afterglow, total } = roa.duration;
 
-    return dosages.getContent();
-};
-
-const buildDuration = (substance: Substance): string => {
-    const durations: MessageCategoryBuilder = new MessageCategoryBuilder("🕐", "Duration");
-    for (const roa of substance.roas) {
-        if (!roa || !roa.duration) {
-            continue;
-        }
-
-        durations.appendLineInTags(`(${capitalize(roa.name)})`, "i");
-
-        durations.appendField(
-            "Onset",
-            formatMinMax(roa.duration.onset, roa.duration.onset?.units, durationAliases),
-        );
-        durations.appendField(
-            "Comeup",
-            formatMinMax(roa.duration.comeup, roa.duration.comeup?.units, durationAliases),
-        );
-        durations.appendField(
-            "Peak",
-            formatMinMax(roa.duration.peak, roa.duration.peak?.units, durationAliases),
-        );
-        durations.appendField(
-            "Offset",
-            formatMinMax(roa.duration.offset, roa.duration.offset?.units, durationAliases),
-        );
-        durations.appendField(
-            "Afterglow",
-            formatMinMax(roa.duration.afterglow, roa.duration.afterglow?.units, durationAliases),
-        );
-        durations.appendField(
-            "Total",
-            formatMinMax(roa.duration.total, roa.duration.total?.units, durationAliases),
-        );
-
-        durations.appendNewLines(1);
-    }
-
-    return durations.getContent();
-};
+            builder
+                .appendLineInTags(`(${capitalize(roa.name)})`, "i")
+                .appendField("Onset", formatMinMax(onset, onset?.units, durationAliases))
+                .appendField("Comeup", formatMinMax(comeup, comeup?.units, durationAliases))
+                .appendField("Peak", formatMinMax(peak, peak?.units, durationAliases))
+                .appendField("Offset", formatMinMax(offset, offset?.units, durationAliases))
+                .appendField("Afterglow", formatMinMax(afterglow, afterglow?.units, durationAliases))
+                .appendField("Total", formatMinMax(total, total?.units, durationAliases))
+                .appendNewLines(1);
+        })
+        .getContent();
 
 const buildTolerance = (substance: Substance): string =>
-    new MessageCategoryBuilder("📈", "Tolerance")
+    new StringBuilder()
+        .appendCategoryTitle("📈", "Tolerance")
         .appendField("Full", substance.tolerance?.full)
         .appendField("Half", substance.tolerance?.half)
         .appendField("Baseline", substance.tolerance?.zero)
         .getContent();
 
-const buildAddictionPotential = (substance: Substance): string => {
-    const addictionPotential: MessageCategoryBuilder = new MessageCategoryBuilder(
-        "⚠️",
-        "Addiction potential",
-    );
-    if (substance.addictionPotential) {
-        addictionPotential.appendLine(capitalize(substance.addictionPotential));
-    }
-
-    return addictionPotential.getContent();
-};
+const buildAddictionPotential = (substance: Substance): string =>
+    new StringBuilder()
+        .appendCategoryTitle("⚠️", "Addiction potential")
+        // TODO: accept <string | null> to avoid having <>! + eslint-disable rule
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        .appendLineIf(capitalize(substance.addictionPotential!), substance.addictionPotential !== null)
+        .getContent();

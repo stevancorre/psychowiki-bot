@@ -4,8 +4,7 @@ import { Paginator } from "telegraf-paginator";
 import bot from "..";
 import { Command } from "../core/command";
 import { formatInt } from "../helpers/formatters";
-import { MessageBuilder } from "../helpers/messageBuilder";
-import { MessageCategoryBuilder } from "../helpers/messageCategoryBuilder";
+import { StringBuilder } from "../helpers/stringBuilder";
 import weightMiddleware, { Weight } from "../middlewares/weightMiddleware";
 
 const KetamineCalcCommand: Command = {
@@ -40,10 +39,11 @@ const KetamineCalcCommand: Command = {
 export default KetamineCalcCommand;
 
 const buildKetamineCalcHeader = (weight: Weight): string =>
-    new MessageBuilder().appendTitle(`Ketamine dosage calculator for <u>${weight.original}</u>`).getContent();
+    new StringBuilder().appendTitle(`Ketamine dosage calculator for <u>${weight.original}</u>`).getContent();
 
 const buildKetamineCalcInsufflated = (weight: Weight): string =>
-    new MessageCategoryBuilder("👃", "Insufflated")
+    new StringBuilder()
+        .appendCategoryTitle("👃", "Insufflated")
         .appendField("Threshold", `${formatInt(weight.pounds * 0.1)}mg`)
         .appendField("Light", `${formatInt(weight.pounds * 0.15)}mg`)
         .appendField("Common", `${formatInt(weight.pounds * 0.3)}mg`)
@@ -52,7 +52,8 @@ const buildKetamineCalcInsufflated = (weight: Weight): string =>
         .getContent();
 
 const buildKetamineCalcOral = (weight: Weight): string =>
-    new MessageCategoryBuilder("💊", "Oral")
+    new StringBuilder()
+        .appendCategoryTitle("💊", "Oral")
         .appendField("Threshold", `${formatInt(weight.pounds * 0.3)}mg`)
         .appendField("Light", `${formatInt(weight.pounds * 0.6)}mg`)
         .appendField("Common", `${formatInt(weight.pounds * 0.75)}mg - ${formatInt(weight.pounds * 2)}mg`)
@@ -61,7 +62,8 @@ const buildKetamineCalcOral = (weight: Weight): string =>
         .getContent();
 
 const buildKetamineCalcIntramuscular = (weight: Weight): string =>
-    new MessageCategoryBuilder("💉", "Intramuscular")
+    new StringBuilder()
+        .appendCategoryTitle("💉", "Intramuscular")
         .appendField("Threshold", `${formatInt(weight.pounds * 0.1)}mg`)
         .appendField("Light", `${formatInt(weight.pounds * 0.15)}mg`)
         .appendField("Common", `${formatInt(weight.pounds * 0.2)}mg`)
@@ -71,7 +73,8 @@ const buildKetamineCalcIntramuscular = (weight: Weight): string =>
         .getContent();
 
 const buildKetamineCalcRectal = (weight: Weight): string =>
-    new MessageCategoryBuilder("🚀", "Rectal")
+    new StringBuilder()
+        .appendCategoryTitle("🚀", "Rectal")
         .appendField("Threshold", `${formatInt(weight.pounds * 0.3)}mg`)
         .appendField("Light", `${formatInt(weight.pounds * 0.6)}mg`)
         .appendField("Common", `${formatInt(weight.pounds * 0.75)}mg - ${formatInt(weight.pounds * 2)}mg`)

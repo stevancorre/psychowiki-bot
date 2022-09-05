@@ -2,8 +2,7 @@ import { Context } from "telegraf";
 
 import { Command } from "../core/command";
 import { formatInt } from "../helpers/formatters";
-import { MessageBuilder } from "../helpers/messageBuilder";
-import { MessageCategoryBuilder } from "../helpers/messageCategoryBuilder";
+import { StringBuilder } from "../helpers/stringBuilder";
 import { replyToMessage } from "../helpers/telegraf";
 import weightMiddleware, { Weight } from "../middlewares/weightMiddleware";
 
@@ -32,29 +31,20 @@ const buildDxmCalcMessage = (weight: Weight): string => {
     const commonMaxStrongMin: number = 400 * doseModifier;
     const strongMaxHeavy: number = 700 * doseModifier;
 
-    const messageBuilder = new MessageBuilder();
-    messageBuilder.setCategoriesSpacing(1);
-    messageBuilder.appendTitle(`DXM dosage calculator for <u>${weight.original}</u>`);
-
-    const dosages = new MessageCategoryBuilder("⚖️", "Dosages");
-    dosages.appendField("First plateau", `${formatInt(lightMin)}mg - ${formatInt(lightMaxCommonMin)}mg`);
-    dosages.appendField(
-        "Second plateau",
-        `${formatInt(lightMaxCommonMin)}mg - ${formatInt(commonMaxStrongMin)}mg`,
-    );
-    dosages.appendField(
-        "Third plateau",
-        `${formatInt(commonMaxStrongMin)}mg - ${formatInt(strongMaxHeavy)}mg`,
-    );
-    dosages.appendField("Fourth plateau", `${formatInt(strongMaxHeavy)}+mg`);
-
-    const warning = new MessageCategoryBuilder("⚠️", "Warning");
-    warning.appendLine(
-        `These recommendations are an approximation and are on the lower end for harm reduction purposes, please take into account your own personal tolerance and start with lower dosages. Doses exceeding 1500mg are potentially fatal.`,
-    );
-
-    messageBuilder.appendCategory(dosages);
-    messageBuilder.appendCategory(warning);
-
-    return messageBuilder.getContent();
+    return new StringBuilder()
+        .appendTitle(`DXM dosage calculator for <u>${weight.original}</u>`)
+        .appendCategoryTitle("⚖️", "Dosages")
+        .appendField("First plateau", `${formatInt(lightMin)}mg - ${formatInt(lightMaxCommonMin)}mg`)
+        .appendField(
+            "Second plateau",
+            `${formatInt(lightMaxCommonMin)}mg - ${formatInt(commonMaxStrongMin)}mg`,
+        )
+        .appendField("Third plateau", `${formatInt(commonMaxStrongMin)}mg - ${formatInt(strongMaxHeavy)}mg`)
+        .appendField("Fourth plateau", `${formatInt(strongMaxHeavy)}+mg`)
+        .appendNewLines(1)
+        .appendCategoryTitle("⚠️", "Warning")
+        .appendLine(
+            `These recommendations are an approximation and are on the lower end for harm reduction purposes, please take into account your own personal tolerance and start with lower dosages. Doses exceeding 1500mg are potentially fatal.`,
+        )
+        .getContent();
 };
