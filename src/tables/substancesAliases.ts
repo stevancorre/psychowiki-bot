@@ -10,4 +10,4 @@ export const findSubstanceInTable = (substance: string): string | undefined =>
                 ? v.toLowerCase() === substance
                 : v.find((x) => x.toLowerCase() === substance);
         return k.toLowerCase() === substance || substanceInV;
-    })?.[0];
+    })?.[0] ?? substance;
