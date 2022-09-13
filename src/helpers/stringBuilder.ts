@@ -102,11 +102,6 @@ export class StringBuilder {
     }
 
     public getContent(): string {
-        console.log("---------------");
-        console.log(this.notContentLength);
-        console.log(this.content.length);
-        console.log(this.content);
-        console.log("---------------");
         if (this.categoryTitle && this.notContentLength === this.content.length)
             this.appendLineInTags(`No ${this.categoryTitle?.toLowerCase()} infos`, "i");
 
