@@ -1,35 +1,22 @@
-import axios from "axios";
 import { Context } from "telegraf";
 import { Paginator } from "telegraf-paginator";
 
 import bot from "..";
-import { API_ENDPOINT } from "../constants/PsychonautWiki";
 import { Command } from "../core/command";
 import { capitalize, formatMinMax } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
 import substanceMiddleware from "../middlewares/substanceMiddleware";
-import infoQuery from "../queries/info";
+import { PsychonautWikiProvider } from "../providers/psychonaut-wiki";
+import { Substance } from "../providers/psychonaut-wiki/types/Substance";
 import durationAliases from "../tables/durationAliases";
-import { Substance } from "../types/Substance";
 
 const InfoCommand: Command = {
     name: "info",
     description: "",
     middlewares: [substanceMiddleware],
-    handler: async (ctx: Context) => {
-        const query: string = infoQuery(<string>ctx.state.substance);
-        const encodedQuery = encodeURIComponent(query);
-        const requestUri = `${API_ENDPOINT}?query=${encodedQuery}`;
-
-        axios
-            .get(requestUri)
-            .then(async (response) => {
-                const substance: Substance | undefined = response.data?.data?.substances?.[0];
-                if (substance === undefined) {
-                    // TODO: reply with error
-                    return console.log("substance data not found");
-                }
-
+    handler: async (ctx: Context) =>
+        PsychonautWikiProvider.infos(<string>ctx.state.substance)
+            .then(async (substance) => {
                 const paginator = new Paginator(
                     [
                         { title: "⚖️ Dosages", data: buildDosage(substance) },
@@ -48,11 +35,7 @@ const InfoCommand: Command = {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 paginator.handleAction(bot as unknown as any);
             })
-            .catch((err) => {
-                // TODO: reply with error
-                console.error(err);
-            });
-    },
+            .catch(console.error),
 };
 export default InfoCommand;
 

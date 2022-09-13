@@ -1,4 +1,4 @@
-import { MinMax } from "../types/MinMax";
+import { MinMax } from "../providers/psychonaut-wiki/types/MinMax";
 import { Dictionary } from "./dictionary";
 import { StringBuilder } from "./stringBuilder";
 
