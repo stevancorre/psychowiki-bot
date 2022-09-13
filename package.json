@@ -18,8 +18,7 @@
         "build": "eslint . --fix && tsup --config tsup.config.prod.ts",
         "dev": "eslint . --fix && tsup --watch --config tsup.config.dev.ts",
         "preinstall": "npx only-allow pnpm",
-        "lint": "eslint .",
-        "lint:fix": "eslint . --fix",
+        "lint": "eslint . --fix --cache",
         "start": "eslint . --fix && tsup --config tsup.config.prod.ts && node dist/index.js"
     },
     "dependencies": {
