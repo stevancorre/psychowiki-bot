@@ -37,10 +37,13 @@ const InfoCommand: Command = {
                         { title: "📈 Tolerance", data: buildTolerance(substance) },
                         { title: "⚠️ Addiction", data: buildAddictionPotential(substance) },
                     ],
-                    buildHeader(substance),
+                    {
+                        header: buildHeader(substance),
+                        maxPagesPerRow: 2,
+                    },
                 );
 
-                await ctx.reply(paginator.text(), paginator.extra());
+                await ctx.reply(paginator.text(), paginator.extras());
                 // dw abt this
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 paginator.handleAction(bot as unknown as any);

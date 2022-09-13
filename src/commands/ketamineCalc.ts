@@ -26,10 +26,14 @@ const KetamineCalcCommand: Command = {
                 { title: "💉 Intramuscular", data: buildKetamineCalcIntramuscular(weight) },
                 { title: "🚀 Rectal", data: buildKetamineCalcRectal(weight) },
             ],
-            buildKetamineCalcHeader(weight),
+            {
+                header: buildKetamineCalcHeader(weight),
+                footer: buildKetamineCalcFooter(),
+                maxPagesPerRow: 2,
+            },
         );
 
-        await ctx.replyWithHTML(paginator.text(), paginator.extra());
+        await ctx.replyWithHTML(paginator.text(), paginator.extras());
 
         // i'll fix this as unknown as any shits later dw
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -57,8 +61,6 @@ const buildKetamineCalcInsufflated = (weight: Weight): string =>
         .appendField("Common", `${formatInt(weight.pounds * 0.3)}mg`)
         .appendField("Strong", `${formatInt(weight.pounds * 0.5)}mg - ${formatInt(weight.pounds * 0.75)}mg`)
         .appendField("K-hole", `${formatInt(weight.pounds)}mg`)
-        .appendNewLines(1)
-        .appendLine(buildKetamineCalcFooter())
         .getContent();
 
 const buildKetamineCalcOral = (weight: Weight): string =>
@@ -69,8 +71,6 @@ const buildKetamineCalcOral = (weight: Weight): string =>
         .appendField("Common", `${formatInt(weight.pounds * 0.75)}mg - ${formatInt(weight.pounds * 2)}mg`)
         .appendField("Strong", `${formatInt(weight.pounds * 2)}mg - ${formatInt(weight.pounds * 2.5)}mg`)
         .appendField("K-hole", `${formatInt(weight.pounds * 3)}mg - ${formatInt(weight.pounds * 4)}mg`)
-        .appendNewLines(1)
-        .appendLine(buildKetamineCalcFooter())
         .getContent();
 
 const buildKetamineCalcIntramuscular = (weight: Weight): string =>
@@ -82,8 +82,6 @@ const buildKetamineCalcIntramuscular = (weight: Weight): string =>
         .appendField("Strong", `${formatInt(weight.pounds * 0.5)}mg`)
         .appendField("K-hole", `${formatInt(weight.pounds * 0.75)}mg`)
         .appendField("Anesthetic", `${formatInt(weight.pounds)}mg`)
-        .appendNewLines(1)
-        .appendLine(buildKetamineCalcFooter())
         .getContent();
 
 const buildKetamineCalcRectal = (weight: Weight): string =>
@@ -94,6 +92,4 @@ const buildKetamineCalcRectal = (weight: Weight): string =>
         .appendField("Common", `${formatInt(weight.pounds * 0.75)}mg - ${formatInt(weight.pounds * 2)}mg`)
         .appendField("Strong", `${formatInt(weight.pounds * 2)}mg - ${formatInt(weight.pounds * 2.5)}mg`)
         .appendField("K-hole", `${formatInt(weight.pounds * 3)}mg - ${formatInt(weight.pounds * 4)}mg`)
-        .appendNewLines(1)
-        .appendLine(buildKetamineCalcFooter())
         .getContent();
