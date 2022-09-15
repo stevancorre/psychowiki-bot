@@ -6,7 +6,7 @@ import { Command } from "../core/command";
 import { capitalize, formatMinMax } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
 import substanceMiddleware from "../middlewares/substanceMiddleware";
-import { PsychonautWikiProvider } from "../providers/psychonaut-wiki";
+import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
 import { Substance } from "../providers/psychonaut-wiki/types/Substance";
 import durationAliases from "../tables/durationAliases";
 
@@ -15,7 +15,7 @@ const InfoCommand: Command = {
     description: "",
     middlewares: [substanceMiddleware],
     handler: async (ctx: Context) =>
-        PsychonautWikiProvider.infos(<string>ctx.state.substance)
+        PsychonautWikiApiProvider.infos(<string>ctx.state.substance)
             .then(async (substance) => {
                 const paginator = new Paginator(
                     [

@@ -9,7 +9,7 @@ import { Substance } from "./types/Substance";
 const API_ENDPOINT = "https://api.psychonautwiki.org/";
 const MAX_EFFECT_COUNT = 10;
 
-export class PsychonautWikiProvider {
+export class PsychonautWikiApiProvider {
     public static infos(substance: string): Promise<Substance> {
         const requestUri: string = this.buildRequestUri(infoQuery(substance));
 

@@ -4,7 +4,7 @@ import { Command } from "../core/command";
 import { capitalize } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
 import substanceMiddleware from "../middlewares/substanceMiddleware";
-import { PsychonautWikiProvider } from "../providers/psychonaut-wiki";
+import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
 import { SubstanceEffects } from "../providers/psychonaut-wiki/types/Effect";
 
 const EffectsCommand: Command = {
@@ -12,7 +12,7 @@ const EffectsCommand: Command = {
     description: "",
     middlewares: [substanceMiddleware],
     handler: async (ctx: Context) =>
-        PsychonautWikiProvider.effects(<string>ctx.state.substance)
+        PsychonautWikiApiProvider.effects(<string>ctx.state.substance)
             .then(async (substances) => {
                 console.log(substances);
 
