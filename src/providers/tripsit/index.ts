@@ -21,7 +21,7 @@ const labels: Record<string, keyof SubstanceCombos> = <const>{
 };
 
 export class TripSitApiProvider {
-    public static combos(substance: string) {
+    public static combos(substance: string): Promise<SubstanceCombos> {
         const requestUri = `${TRIPSIT_API_ENDPOINT}?name=${substance}`;
 
         return new Promise((resolve, reject) =>
