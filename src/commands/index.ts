@@ -1,6 +1,7 @@
 import { Command } from "../core/command";
 import BreatheCommand from "./breathe";
 import ComboChartCommand from "./comboChart";
+import CombosCommand from "./combos";
 import DxmCalcCommand from "./dxmCalc";
 import EffectsCommand from "./effects";
 import InfoCommand from "./info";
@@ -15,4 +16,5 @@ export const commands: Command[] = [
     KetamineCalcCommand,
     InfoCommand,
     EffectsCommand,
+    CombosCommand,
 ];
