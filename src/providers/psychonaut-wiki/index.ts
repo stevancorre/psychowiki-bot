@@ -3,8 +3,8 @@ import { randomInt } from "crypto";
 
 import effectsQuery from "./queries/effects";
 import infoQuery from "./queries/info";
-import { Effect, SubstanceEffects } from "./types/Effect";
 import { Substance } from "./types/Substance";
+import { SubstanceEffect, SubstanceEffects } from "./types/SubstanceEffect";
 
 const API_ENDPOINT = "https://api.psychonautwiki.org/";
 const MAX_EFFECT_COUNT = 10;
@@ -36,7 +36,7 @@ export class PsychonautWikiApiProvider {
                 .get(requestUri)
                 .then(async (response) => {
                     const substance = response.data?.data?.substances?.[0];
-                    const effects: Effect[] | undefined = substance?.effects;
+                    const effects: SubstanceEffect[] | undefined = substance?.effects;
                     if (effects === undefined) reject(`No effects infos available for ${substance}`);
                     else {
                         if (effects.length > MAX_EFFECT_COUNT) {

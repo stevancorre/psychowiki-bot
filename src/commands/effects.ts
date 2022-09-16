@@ -5,7 +5,7 @@ import { capitalize } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
 import substanceMiddleware from "../middlewares/substanceMiddleware";
 import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
-import { SubstanceEffects } from "../providers/psychonaut-wiki/types/Effect";
+import { SubstanceEffects } from "../providers/psychonaut-wiki/types/SubstanceEffect";
 
 const EffectsCommand: Command = {
     name: "effects",
