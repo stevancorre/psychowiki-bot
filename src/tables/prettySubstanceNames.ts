@@ -1,4 +1,4 @@
-export const substancesAliases: Record<string, string> = <const>{
+export const prettySubstances: Record<string, string> = <const>{
     lsd: "LSD",
     mushrooms: "Mushrooms",
     dmt: "DMT",
@@ -30,5 +30,5 @@ export const substancesAliases: Record<string, string> = <const>{
 };
 
 export const prettySubstanceName = (substance: string): string => {
-    return substancesAliases[substance] ?? substance;
+    return prettySubstances[substance] ?? substance;
 };
