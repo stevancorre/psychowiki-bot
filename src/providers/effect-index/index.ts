@@ -27,7 +27,6 @@ export class EffectsIndexApiProvider {
                 .then((response) => {
                     const data: Response | undefined = response.data;
                     if (data?.effect?.summary_raw === undefined) return reject("Effect not found");
-                    console.log(data.effect);
 
                     resolve({
                         url: `https://www.effectindex.com/effects/${effect}`,
