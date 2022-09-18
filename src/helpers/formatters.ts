@@ -1,18 +1,17 @@
 import { MinMax } from "../providers/psychonaut-wiki/types/MinMax";
-import { Dictionary } from "./dictionary";
 import { StringBuilder } from "./stringBuilder";
 
 export function formatMinMax(
     value: MinMax | number | null | undefined,
     units: string | null | undefined,
-    unitAliases?: Dictionary<string, string>,
+    unitAliases?: ReadonlyMap<string, string>,
 ): string {
     if (!value || !units) {
         return "";
     }
 
     if (unitAliases) {
-        units = unitAliases.tryGetValue(units, units);
+        units = unitAliases.get(units) ?? units;
     }
 
     // example: 40mg

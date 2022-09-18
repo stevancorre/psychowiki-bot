@@ -1,8 +1,7 @@
-import { Dictionary } from "../helpers/dictionary";
-
-export default new Dictionary<string, string>({
-    minute: "min",
-    minutes: "min",
-    hour: "h",
-    hours: "h",
-});
+const durationAliases: ReadonlyMap<string, string> = new Map<string, string>([
+    ["minute", "min"],
+    ["minutes", "min"],
+    ["hour", "h"],
+    ["hours", "h"],
+]);
+export default durationAliases;
