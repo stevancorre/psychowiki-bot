@@ -1,19 +1,18 @@
+import bot from "pwb";
 import { Command } from "pwb/core/command";
 import { StringBuilder } from "pwb/helpers/stringBuilder";
 import { replyToMessage } from "pwb/helpers/telegraf";
 import substanceMiddleware from "pwb/middlewares/substance";
+import { TripSitApiProvider } from "pwb/providers/tripsit";
 import { prettySubstance } from "pwb/tables/prettySubstances";
 import { Context } from "telegraf";
 import { Page, Paginator } from "telegraf-paginator";
-
-import bot from "..";
-import { TripSitApiProvider } from "../providers/tripsit";
 
 const CombosCommand: Command = {
     name: "combos",
     description: "Send the available combo data for a specific substance",
     middlewares: [substanceMiddleware],
-    handler: async (ctx: Context) => {
+    handler: async (ctx: Context): Promise<void> => {
         const susbtance: string = <string>ctx.state["substance"];
         TripSitApiProvider.combos(susbtance)
             .then(async (combos) => {
@@ -63,7 +62,7 @@ const buildCombosMessageFooter = (): string =>
         )
         .getContent();
 
-const buildCombosPage = (icon: string, title: string, combos: string[]) => ({
+const buildCombosPage = (icon: string, title: string, combos: string[]): Page => ({
     // if there are any combo, build the category, otherwhise nothing
     title: `${icon} ${title}`,
     data: combos.length > 0 ? buildCombosCategory(icon, title, combos) : "",

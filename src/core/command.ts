@@ -4,5 +4,5 @@ export interface Command {
     name: string;
     description: string;
     middlewares?: ReadonlyArray<Middleware<Context>>;
-    handler: (ctx: Context) => Promise<void> | void;
+    handler: (ctx: Context) => void | Promise<void>;
 }

@@ -63,7 +63,7 @@ export class PsychonautWikiApiProvider {
         );
     }
 
-    private static buildRequestUri(query: string) {
+    private static buildRequestUri(query: string): string {
         const encodedQuery = encodeURIComponent(query);
         return `${API_ENDPOINT}?query=${encodedQuery}`;
     }

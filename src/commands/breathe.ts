@@ -4,7 +4,7 @@ import { Context } from "telegraf";
 const BreatheCommand: Command = {
     name: "breathe",
     description: "Sends a gif to help you focusing on your breathing",
-    handler: async (ctx: Context) => {
+    handler: async (ctx: Context): Promise<void> => {
         await ctx.replyToMessageWithVideo("https://i.imgur.com/xtwSfR0.gif");
     },
 };

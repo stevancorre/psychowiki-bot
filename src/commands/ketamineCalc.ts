@@ -1,3 +1,4 @@
+import bot from "pwb";
 import { Command } from "pwb/core/command";
 import { formatInt } from "pwb/helpers/formatters";
 import { StringBuilder } from "pwb/helpers/stringBuilder";
@@ -6,13 +7,11 @@ import weightMiddleware, { Weight } from "pwb/middlewares/weight";
 import { Context } from "telegraf";
 import { Paginator } from "telegraf-paginator";
 
-import bot from "..";
-
 const KetamineCalcCommand: Command = {
     name: "ketaminecalc",
     description: "Gives you ketamine dosages for a given weight (kg or lbs)",
     middlewares: [weightMiddleware],
-    handler: async (ctx: Context) => {
+    handler: async (ctx: Context): Promise<void> => {
         const weight = <Weight>ctx.state["weight"];
         if (weight.pounds < 20) {
             await ctx.replyToMessageWithErrorHTML("Please give a realistic weight");

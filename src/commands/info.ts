@@ -1,22 +1,21 @@
+import bot from "pwb";
 import { Command } from "pwb/core/command";
 import { capitalize, formatMinMax } from "pwb/helpers/formatters";
 import { StringBuilder } from "pwb/helpers/stringBuilder";
 import { replyToMessage } from "pwb/helpers/telegraf";
 import substanceMiddleware from "pwb/middlewares/substance";
+import { PsychonautWikiApiProvider } from "pwb/providers/psychonaut-wiki";
+import { Substance } from "pwb/providers/psychonaut-wiki/types/Substance";
 import durationAliases from "pwb/tables/durations";
 import { Context } from "telegraf";
 import { Paginator } from "telegraf-paginator";
-
-import bot from "..";
-import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
-import { Substance } from "../providers/psychonaut-wiki/types/Substance";
 
 const InfoCommand: Command = {
     name: "info",
     description:
         "Gives you dosages, durations, tolerance and addiction informations for a specific substance",
     middlewares: [substanceMiddleware],
-    handler: async (ctx: Context) =>
+    handler: async (ctx: Context): Promise<void> =>
         PsychonautWikiApiProvider.infos(<string>ctx.state["substance"])
             .then(async (substance) => {
                 const paginator = new Paginator(

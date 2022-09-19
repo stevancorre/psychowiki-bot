@@ -1,11 +1,11 @@
-import { createLogger, format, transports } from "winston";
+import { createLogger, format, Logger, transports } from "winston";
 
 import appConfig from "./configuration";
 
 const { colorize, combine, json, prettyPrint, printf, simple, timestamp } = format;
 const { File, Console } = transports;
 
-export default createLogger({
+const appLogger: Logger = createLogger({
     transports: [
         new Console({
             format: combine(
@@ -27,3 +27,4 @@ export default createLogger({
     ),
     level: appConfig.logLevel,
 });
+export default appLogger;

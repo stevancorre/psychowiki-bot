@@ -2,16 +2,15 @@ import { Command } from "pwb/core/command";
 import { capitalize } from "pwb/helpers/formatters";
 import { StringBuilder } from "pwb/helpers/stringBuilder";
 import substanceMiddleware from "pwb/middlewares/substance";
+import { PsychonautWikiApiProvider } from "pwb/providers/psychonaut-wiki";
+import { SubstanceEffects } from "pwb/providers/psychonaut-wiki/types/SubstanceEffect";
 import { Context } from "telegraf";
-
-import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
-import { SubstanceEffects } from "../providers/psychonaut-wiki/types/SubstanceEffect";
 
 const EffectsCommand: Command = {
     name: "effects",
     description: "Give you a list of effects given by a substance",
     middlewares: [substanceMiddleware],
-    handler: async (ctx: Context) =>
+    handler: async (ctx: Context): Promise<void> =>
         PsychonautWikiApiProvider.effects(<string>ctx.state["substance"])
             .then(async (substances) => {
                 await ctx.replyToMessageWithHTML(buildSubstanceEffectsMessage(substances));

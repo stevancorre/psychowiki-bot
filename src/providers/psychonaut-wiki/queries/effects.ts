@@ -1,4 +1,4 @@
-export default (substanceName: string): string => {
+const effectQuery = (substanceName: string): string => {
     return `{
         substances(query: "${substanceName}") {
             name
@@ -9,3 +9,4 @@ export default (substanceName: string): string => {
         }
     }`;
 };
+export default effectQuery;

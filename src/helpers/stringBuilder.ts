@@ -17,7 +17,7 @@ export class StringBuilder {
         return this;
     }
 
-    public appendCategoryTitle(icon: string, title: string) {
+    public appendCategoryTitle(icon: string, title: string): StringBuilder {
         this.categoryTitle = title;
 
         const before = this.content.length;

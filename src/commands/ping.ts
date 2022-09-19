@@ -4,7 +4,7 @@ import { Context } from "telegraf";
 const PingCommand: Command = {
     name: "ping",
     description: "Ping the bot",
-    handler: async (ctx: Context) => {
+    handler: async (ctx: Context): Promise<void> => {
         await ctx.replyToMessageWithHTML("🏓 Pong!");
     },
 };

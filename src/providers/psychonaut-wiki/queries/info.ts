@@ -1,4 +1,4 @@
-export default (substanceName: string): string => {
+const infoQuery = (substanceName: string): string => {
     return `{
         substances(query: "${substanceName}") {
             name
@@ -32,3 +32,4 @@ export default (substanceName: string): string => {
         }
     }`;
 };
+export default infoQuery;

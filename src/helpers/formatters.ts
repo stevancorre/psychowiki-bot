@@ -1,11 +1,12 @@
-import { MinMax } from "../providers/psychonaut-wiki/types/MinMax";
+import { MinMax } from "pwb/providers/psychonaut-wiki/types/MinMax";
+
 import { StringBuilder } from "./stringBuilder";
 
-export function formatMinMax(
+export const formatMinMax = (
     value: MinMax | number | null | undefined,
     units: string | null | undefined,
     unitAliases?: ReadonlyMap<string, string>,
-): string {
+): string => {
     if (!value || !units) return "";
     if (unitAliases) units = unitAliases.get(units) ?? units;
     // example: 40mg
@@ -20,14 +21,14 @@ export function formatMinMax(
     } else if (value.max) builder.append(`${value.max}${units}`);
 
     return builder.getContent();
-}
+};
 
-export function capitalize(value: string): string {
+export const capitalize = (value: string): string => {
     if (value === undefined || !value[0]) return "";
     return value[0].toUpperCase() + value.slice(1);
-}
+};
 
-export function formatExternalLink(title: string, url: string): string {
+export const formatExternalLink = (title: string, url: string): string => {
     title = capitalize(title.replace(/\(.*\)/gm, "").trim());
     const websiteNameAndDomain: string = url
         .replace(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?]+)(.*)$/gim, "$1")
@@ -35,8 +36,8 @@ export function formatExternalLink(title: string, url: string): string {
         .toLowerCase();
 
     return `${title}: <a href="${url}">${websiteNameAndDomain}</a>`;
-}
+};
 
-export function formatInt(n: number) {
+export const formatInt = (n: number): string => {
     return n.toFixed(0);
-}
+};

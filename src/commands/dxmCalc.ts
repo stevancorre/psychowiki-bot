@@ -8,7 +8,7 @@ const DxmCalcCommand: Command = {
     name: "dxmcalc",
     description: "Gives you approximate dosages for different DXM plateaus",
     middlewares: [weightMiddleware],
-    handler: async (ctx: Context) => {
+    handler: async (ctx: Context): Promise<void> => {
         const weight = <Weight>ctx.state["weight"];
         if (weight.pounds < 20) {
             await ctx.replyToMessageWithErrorHTML("Please give a realistic weight");

@@ -1,4 +1,4 @@
-import appConfig from "../../appconfig.json";
+import appConfig from "pwb/appconfig.json";
 
 export interface AppConfig {
     token: string;

@@ -7,12 +7,15 @@
         "esModuleInterop": true,
         "baseUrl": "./",
         "paths": {
+            "pwb": ["src/index"],
             "pwb/core/*": ["src/core/*"],
-            "pwb/commands/*": ["src/commands/*"],
             "pwb/commands": ["src/commands/index"],
+            "pwb/commands/*": ["src/commands/*"],
             "pwb/helpers/*": ["src/helpers/*"],
             "pwb/middlewares/*": ["src/middlewares/*"],
             "pwb/tables/*": ["src/tables/*"],
+            "pwb/providers/*": ["src/providers/*"],
+            "pwb/appconfig.json": ["appconfig.json"]
         },
         "forceConsistentCasingInFileNames": true,
         "strict": true,
