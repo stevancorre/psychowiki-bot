@@ -14,7 +14,7 @@ const EffectsCommand: Command = {
     handler: async (ctx: Context) =>
         PsychonautWikiApiProvider.effects(<string>ctx.state.substance)
             .then(async (substances) => {
-                await ctx.reply(buildSubstanceEffectsMessage(substances), { parse_mode: "HTML" });
+                await ctx.replyToMessageWithHTML(buildSubstanceEffectsMessage(substances));
             })
             .catch(console.error),
 };

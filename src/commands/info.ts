@@ -5,6 +5,7 @@ import bot from "..";
 import { Command } from "../core/command";
 import { capitalize, formatMinMax } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
+import { replyToMessage } from "../helpers/telegraf";
 import substanceMiddleware from "../middlewares/substance";
 import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
 import { Substance } from "../providers/psychonaut-wiki/types/Substance";
@@ -31,7 +32,10 @@ const InfoCommand: Command = {
                     },
                 );
 
-                await ctx.reply(paginator.text(), paginator.extras());
+                await ctx.reply(paginator.text(), {
+                    ...paginator.extras(),
+                    ...replyToMessage(ctx),
+                });
                 // dw abt this
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 paginator.handleAction(bot as unknown as any);

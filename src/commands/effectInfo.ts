@@ -14,9 +14,7 @@ const EffectInfoCommand: Command = {
     handler: async (ctx: Context) =>
         EffectsIndexApiProvider.infos(<string>ctx.state.effect)
             .then(async (effect) => {
-                await ctx.reply(buildEffectInfoMessage(effect), {
-                    parse_mode: "HTML",
-                });
+                await ctx.replyToMessageWithHTML(buildEffectInfoMessage(effect));
             })
             .catch(console.error),
 };

@@ -5,6 +5,7 @@ import bot from "..";
 import { Command } from "../core/command";
 import { formatInt } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
+import { replyToMessage } from "../helpers/telegraf";
 import weightMiddleware, { Weight } from "../middlewares/weight";
 
 const KetamineCalcCommand: Command = {
@@ -33,7 +34,10 @@ const KetamineCalcCommand: Command = {
             },
         );
 
-        await ctx.replyWithHTML(paginator.text(), paginator.extras());
+        await ctx.replyWithHTML(paginator.text(), {
+            ...paginator.extras(),
+            ...replyToMessage(ctx),
+        });
 
         // i'll fix this as unknown as any shits later dw
         // eslint-disable-next-line @typescript-eslint/no-explicit-any

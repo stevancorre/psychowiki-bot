@@ -4,6 +4,7 @@ import { Page, Paginator } from "telegraf-paginator";
 import bot from "..";
 import { Command } from "../core/command";
 import { StringBuilder } from "../helpers/stringBuilder";
+import { replyToMessage } from "../helpers/telegraf";
 import substanceMiddleware from "../middlewares/substance";
 import { TripSitApiProvider } from "../providers/tripsit";
 import { prettySubstance } from "../tables/prettySubstances";
@@ -30,7 +31,10 @@ const CombosCommand: Command = {
                     footer: buildCombosMessageFooter(),
                 });
 
-                await ctx.reply(paginator.text(), paginator.extras());
+                await ctx.reply(paginator.text(), {
+                    ...paginator.extras(),
+                    ...replyToMessage(ctx),
+                });
                 // dw abt this
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 paginator.handleAction(bot as unknown as any);
