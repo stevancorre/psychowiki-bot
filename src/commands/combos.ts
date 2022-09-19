@@ -10,7 +10,7 @@ import { prettySubstance } from "../tables/prettySubstances";
 
 const CombosCommand: Command = {
     name: "combos",
-    description: "",
+    description: "Send the available combo data for a specific substance",
     middlewares: [substanceMiddleware],
     handler: async (ctx: Context) => {
         const susbtance: string = <string>ctx.state.substance;

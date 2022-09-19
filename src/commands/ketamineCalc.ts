@@ -9,7 +9,7 @@ import weightMiddleware, { Weight } from "../middlewares/weight";
 
 const KetamineCalcCommand: Command = {
     name: "ketaminecalc",
-    description: "",
+    description: "Gives you ketamine dosages for a given weight (kg or lbs)",
     middlewares: [weightMiddleware],
     handler: async (ctx: Context) => {
         const weight = <Weight>ctx.state.weight;

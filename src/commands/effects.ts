@@ -9,7 +9,7 @@ import { SubstanceEffects } from "../providers/psychonaut-wiki/types/SubstanceEf
 
 const EffectsCommand: Command = {
     name: "effects",
-    description: "",
+    description: "Give you a list of effects given by a substance",
     middlewares: [substanceMiddleware],
     handler: async (ctx: Context) =>
         PsychonautWikiApiProvider.effects(<string>ctx.state.substance)

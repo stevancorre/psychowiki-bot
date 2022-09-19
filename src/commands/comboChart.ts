@@ -5,7 +5,7 @@ import { replyToMessage } from "../helpers/telegraf";
 
 const ComboChartCommand: Command = {
     name: "combochart",
-    description: "",
+    description: "Sends the tripsit's combo chaart",
     handler: async (ctx: Context) => {
         await ctx.replyWithPhoto("https://wiki.tripsit.me/images/3/3a/Combo_2.png", replyToMessage(ctx));
     },

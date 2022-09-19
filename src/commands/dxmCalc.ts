@@ -8,7 +8,7 @@ import weightMiddleware, { Weight } from "../middlewares/weight";
 
 const DxmCalcCommand: Command = {
     name: "dxmcalc",
-    description: "",
+    description: "Gives you approximate dosages for different DXM plateaus",
     middlewares: [weightMiddleware],
     handler: async (ctx: Context) => {
         const weight = <Weight>ctx.state.weight;

@@ -9,7 +9,7 @@ import { Effect } from "../providers/effect-index/types/Effect";
 
 const EffectInfoCommand: Command = {
     name: "effectinfo",
-    description: "",
+    description: "Gives you informations about a specific effect",
     middlewares: [effectMiddleware],
     handler: async (ctx: Context) =>
         EffectsIndexApiProvider.infos(<string>ctx.state.effect)

@@ -12,7 +12,8 @@ import durationAliases from "../tables/durations";
 
 const InfoCommand: Command = {
     name: "info",
-    description: "",
+    description:
+        "Gives you dosages, durations, tolerance and addiction informations for a specific substance",
     middlewares: [substanceMiddleware],
     handler: async (ctx: Context) =>
         PsychonautWikiApiProvider.infos(<string>ctx.state.substance)
