@@ -1,5 +1,6 @@
 import axios from "axios";
 
+import logger from "../../core/logging";
 import { prettySubstance } from "../../tables/prettySubstances";
 import { SubstanceCombos } from "./types/SubstanceCombos";
 
@@ -50,7 +51,7 @@ export class TripSitApiProvider {
                     resolve(result);
                 })
                 .catch(async (error) => {
-                    console.log(error);
+                    logger.error(error);
                     reject(error);
                 }),
         );

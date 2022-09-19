@@ -1,6 +1,7 @@
 import axios from "axios";
 import { randomInt } from "crypto";
 
+import logger from "../../core/logging";
 import effectsQuery from "./queries/effects";
 import infoQuery from "./queries/info";
 import { Substance } from "./types/Substance";
@@ -21,10 +22,7 @@ export class PsychonautWikiApiProvider {
                     if (substance === undefined) reject("Substance not found");
                     else resolve(substance);
                 })
-                .catch((err) => {
-                    console.error(err);
-                    reject(err);
-                }),
+                .catch(() => reject("Substance not found")),
         );
     }
 
@@ -35,8 +33,8 @@ export class PsychonautWikiApiProvider {
             axios
                 .get(requestUri)
                 .then(async (response) => {
-                    const substance = response.data?.data?.substances?.[0];
-                    const effects: SubstanceEffect[] | undefined = substance?.effects;
+                    const responsSubstance = response.data?.data?.substances?.[0];
+                    const effects: SubstanceEffect[] | undefined = responsSubstance?.effects;
                     if (effects === undefined) reject(`No effects infos available for ${substance}`);
                     else {
                         if (effects.length > MAX_EFFECT_COUNT) {
@@ -47,12 +45,15 @@ export class PsychonautWikiApiProvider {
                         }
 
                         resolve({
-                            name: substance.name,
+                            name: responsSubstance.name,
                             effects,
                         });
                     }
                 })
-                .catch(() => reject(`No effects infos available for ${substance}`)),
+                .catch((error) => {
+                    logger.error(error);
+                    reject("Error while fetching api data");
+                }),
         );
     }
 

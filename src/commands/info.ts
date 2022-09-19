@@ -40,7 +40,9 @@ const InfoCommand: Command = {
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 paginator.handleAction(bot as unknown as any);
             })
-            .catch(console.error),
+            .catch(async (error) => {
+                await ctx.replyToMessageWithErrorHTML(error);
+            }),
 };
 export default InfoCommand;
 

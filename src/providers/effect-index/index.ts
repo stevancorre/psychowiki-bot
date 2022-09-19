@@ -1,5 +1,6 @@
 import axios from "axios";
 
+import logger from "../../core/logging";
 import { Effect } from "./types/Effect";
 
 const EFFECT_INDEX_API_ENDPOINT = "https://www.effectindex.com/api/effects/";
@@ -36,8 +37,8 @@ export class EffectsIndexApiProvider {
                     });
                 })
                 .catch((error) => {
-                    console.log(error);
-                    reject(error);
+                    logger.error(error);
+                    reject("Error while fetching api data");
                 }),
         );
     }

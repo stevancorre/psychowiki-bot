@@ -16,7 +16,9 @@ const EffectsCommand: Command = {
             .then(async (substances) => {
                 await ctx.replyToMessageWithHTML(buildSubstanceEffectsMessage(substances));
             })
-            .catch(console.error),
+            .catch(async (error) => {
+                await ctx.replyToMessageWithErrorHTML(error);
+            }),
 };
 export default EffectsCommand;
 

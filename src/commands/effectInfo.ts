@@ -16,7 +16,9 @@ const EffectInfoCommand: Command = {
             .then(async (effect) => {
                 await ctx.replyToMessageWithHTML(buildEffectInfoMessage(effect));
             })
-            .catch(console.error),
+            .catch(async (error) => {
+                await ctx.replyToMessageWithErrorHTML(error);
+            }),
 };
 export default EffectInfoCommand;
 
