@@ -1,9 +1,9 @@
+import { Command } from "pwb/core/command";
+import { formatExternalLink } from "pwb/helpers/formatters";
+import { StringBuilder } from "pwb/helpers/stringBuilder";
+import effectMiddleware from "pwb/middlewares/effect";
 import { Context } from "telegraf";
 
-import { Command } from "../core/command";
-import { formatExternalLink } from "../helpers/formatters";
-import { StringBuilder } from "../helpers/stringBuilder";
-import effectMiddleware from "../middlewares/effect";
 import { EffectsIndexApiProvider } from "../providers/effect-index";
 import { Effect } from "../providers/effect-index/types/Effect";
 
@@ -12,7 +12,7 @@ const EffectInfoCommand: Command = {
     description: "Gives you informations about a specific effect",
     middlewares: [effectMiddleware],
     handler: async (ctx: Context) =>
-        EffectsIndexApiProvider.infos(<string>ctx.state.effect)
+        EffectsIndexApiProvider.infos(<string>ctx.state["effect"])
             .then(async (effect) => {
                 await ctx.replyToMessageWithHTML(buildEffectInfoMessage(effect));
             })

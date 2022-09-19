@@ -1,9 +1,9 @@
+import { Command } from "pwb/core/command";
+import { capitalize } from "pwb/helpers/formatters";
+import { StringBuilder } from "pwb/helpers/stringBuilder";
+import substanceMiddleware from "pwb/middlewares/substance";
 import { Context } from "telegraf";
 
-import { Command } from "../core/command";
-import { capitalize } from "../helpers/formatters";
-import { StringBuilder } from "../helpers/stringBuilder";
-import substanceMiddleware from "../middlewares/substance";
 import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
 import { SubstanceEffects } from "../providers/psychonaut-wiki/types/SubstanceEffect";
 
@@ -12,7 +12,7 @@ const EffectsCommand: Command = {
     description: "Give you a list of effects given by a substance",
     middlewares: [substanceMiddleware],
     handler: async (ctx: Context) =>
-        PsychonautWikiApiProvider.effects(<string>ctx.state.substance)
+        PsychonautWikiApiProvider.effects(<string>ctx.state["substance"])
             .then(async (substances) => {
                 await ctx.replyToMessageWithHTML(buildSubstanceEffectsMessage(substances));
             })

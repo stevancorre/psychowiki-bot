@@ -1,6 +1,6 @@
 import axios from "axios";
+import logger from "pwb/core/logging";
 
-import logger from "../../core/logging";
 import { Effect } from "./types/Effect";
 
 const EFFECT_INDEX_API_ENDPOINT = "https://www.effectindex.com/api/effects/";

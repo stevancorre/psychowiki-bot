@@ -1,20 +1,20 @@
+import { Command } from "pwb/core/command";
+import { StringBuilder } from "pwb/helpers/stringBuilder";
+import { replyToMessage } from "pwb/helpers/telegraf";
+import substanceMiddleware from "pwb/middlewares/substance";
+import { prettySubstance } from "pwb/tables/prettySubstances";
 import { Context } from "telegraf";
 import { Page, Paginator } from "telegraf-paginator";
 
 import bot from "..";
-import { Command } from "../core/command";
-import { StringBuilder } from "../helpers/stringBuilder";
-import { replyToMessage } from "../helpers/telegraf";
-import substanceMiddleware from "../middlewares/substance";
 import { TripSitApiProvider } from "../providers/tripsit";
-import { prettySubstance } from "../tables/prettySubstances";
 
 const CombosCommand: Command = {
     name: "combos",
     description: "Send the available combo data for a specific substance",
     middlewares: [substanceMiddleware],
     handler: async (ctx: Context) => {
-        const susbtance: string = <string>ctx.state.substance;
+        const susbtance: string = <string>ctx.state["substance"];
         TripSitApiProvider.combos(susbtance)
             .then(async (combos) => {
                 const pages: Page[] = [

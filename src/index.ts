@@ -1,13 +1,12 @@
-import { Telegraf } from "telegraf";
-
 import {
     handleSignals,
     registerCatch,
     registerCommands,
     registerMiddelwares,
     startClient,
-} from "./core/client";
-import appConfig from "./core/configuration";
+} from "pwb/core/client";
+import appConfig from "pwb/core/configuration";
+import { Telegraf } from "telegraf";
 
 const bot = new Telegraf(appConfig.token);
 

@@ -1,7 +1,7 @@
 import axios from "axios";
+import logger from "pwb/core/logging";
 
-import logger from "../../core/logging";
-import { prettySubstance } from "../../tables/prettySubstances";
+import { prettySubstance } from "pwb/tables/prettySubstances";
 import { SubstanceCombos } from "./types/SubstanceCombos";
 
 const TRIPSIT_API_ENDPOINT = "http://tripbot.tripsit.me/api/tripsit/getDrug";
@@ -42,9 +42,10 @@ export class TripSitApiProvider {
                     };
 
                     for (const [k, v] of Object.entries(combos)) {
-                        const key: keyof SubstanceCombos = labels[v.status];
-                        const name: string = prettySubstance(k);
+                        const key: keyof SubstanceCombos | undefined = labels[v.status];
+                        if(!key) continue;
 
+                        const name: string = prettySubstance(k);
                         result[key].push(name);
                     }
 

@@ -11,7 +11,7 @@ export default createLogger({
             format: combine(
                 simple(),
                 colorize(),
-                printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`),
+                printf((info) => `[${info["timestamp"]}] ${info.level}: ${info.message}`),
             ),
         }),
         new File({ filename: "logs/error.log", level: "error" }),

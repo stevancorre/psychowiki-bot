@@ -1,7 +1,7 @@
+import { commands } from "pwb/commands";
+import restrictToMiddleware from "pwb/middlewares/restrictTo";
 import { Telegraf } from "telegraf";
 
-import { commands } from "../commands";
-import restrictToMiddleware from "../middlewares/restrictTo";
 import logger from "./logging";
 
 export const registerCatch = (bot: Telegraf) => {

@@ -1,4 +1,5 @@
-import { Command } from "../core/command";
+import { Command } from "pwb/core/command";
+
 import BreatheCommand from "./breathe";
 import ComboChartCommand from "./comboChart";
 import CombosCommand from "./combos";

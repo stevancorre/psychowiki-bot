@@ -1,7 +1,7 @@
 import axios from "axios";
 import { randomInt } from "crypto";
+import logger from "pwb/core/logging";
 
-import logger from "../../core/logging";
 import effectsQuery from "./queries/effects";
 import infoQuery from "./queries/info";
 import { Substance } from "./types/Substance";

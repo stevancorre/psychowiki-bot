@@ -1,19 +1,19 @@
+import { Command } from "pwb/core/command";
+import { formatInt } from "pwb/helpers/formatters";
+import { StringBuilder } from "pwb/helpers/stringBuilder";
+import { replyToMessage } from "pwb/helpers/telegraf";
+import weightMiddleware, { Weight } from "pwb/middlewares/weight";
 import { Context } from "telegraf";
 import { Paginator } from "telegraf-paginator";
 
 import bot from "..";
-import { Command } from "../core/command";
-import { formatInt } from "../helpers/formatters";
-import { StringBuilder } from "../helpers/stringBuilder";
-import { replyToMessage } from "../helpers/telegraf";
-import weightMiddleware, { Weight } from "../middlewares/weight";
 
 const KetamineCalcCommand: Command = {
     name: "ketaminecalc",
     description: "Gives you ketamine dosages for a given weight (kg or lbs)",
     middlewares: [weightMiddleware],
     handler: async (ctx: Context) => {
-        const weight = <Weight>ctx.state.weight;
+        const weight = <Weight>ctx.state["weight"];
         if (weight.pounds < 20) {
             // TODO: better error messages
             await ctx.reply("Please give a realistic weight");

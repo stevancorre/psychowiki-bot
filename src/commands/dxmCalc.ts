@@ -1,23 +1,22 @@
+import { Command } from "pwb/core/command";
+import { formatInt } from "pwb/helpers/formatters";
+import { StringBuilder } from "pwb/helpers/stringBuilder";
+import weightMiddleware, { Weight } from "pwb/middlewares/weight";
 import { Context } from "telegraf";
-
-import { Command } from "../core/command";
-import { formatInt } from "../helpers/formatters";
-import { StringBuilder } from "../helpers/stringBuilder";
-import weightMiddleware, { Weight } from "../middlewares/weight";
 
 const DxmCalcCommand: Command = {
     name: "dxmcalc",
     description: "Gives you approximate dosages for different DXM plateaus",
     middlewares: [weightMiddleware],
     handler: async (ctx: Context) => {
-        const weight = <Weight>ctx.state.weight;
+        const weight = <Weight>ctx.state["weight"];
         if (weight.pounds < 20) {
             // TODO: better error messages
             await ctx.reply("Please give a realistic weight");
             return;
         }
 
-        const dosages: string = buildDxmCalcMessage(<Weight>ctx.state.weight);
+        const dosages: string = buildDxmCalcMessage(<Weight>ctx.state["weight"]);
         await ctx.replyToMessageWithHTML(dosages);
     },
 };

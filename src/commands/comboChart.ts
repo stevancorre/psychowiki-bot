@@ -1,6 +1,5 @@
+import { Command } from "pwb/core/command";
 import { Context } from "telegraf";
-
-import { Command } from "../core/command";
 
 const ComboChartCommand: Command = {
     name: "combochart",
