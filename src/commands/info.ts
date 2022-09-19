@@ -5,10 +5,10 @@ import bot from "..";
 import { Command } from "../core/command";
 import { capitalize, formatMinMax } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
-import substanceMiddleware from "../middlewares/substanceMiddleware";
+import substanceMiddleware from "../middlewares/substance";
 import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
 import { Substance } from "../providers/psychonaut-wiki/types/Substance";
-import durationAliases from "../tables/durationAliases";
+import durationAliases from "../tables/durations";
 
 const InfoCommand: Command = {
     name: "info",

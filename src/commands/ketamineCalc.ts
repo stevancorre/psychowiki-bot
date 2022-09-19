@@ -5,7 +5,7 @@ import bot from "..";
 import { Command } from "../core/command";
 import { formatInt } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
-import weightMiddleware, { Weight } from "../middlewares/weightMiddleware";
+import weightMiddleware, { Weight } from "../middlewares/weight";
 
 const KetamineCalcCommand: Command = {
     name: "ketaminecalc",

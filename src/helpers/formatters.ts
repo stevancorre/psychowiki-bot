@@ -6,30 +6,18 @@ export function formatMinMax(
     units: string | null | undefined,
     unitAliases?: ReadonlyMap<string, string>,
 ): string {
-    if (!value || !units) {
-        return "";
-    }
-
-    if (unitAliases) {
-        units = unitAliases.get(units) ?? units;
-    }
-
+    if (!value || !units) return "";
+    if (unitAliases) units = unitAliases.get(units) ?? units;
     // example: 40mg
-    if (typeof value === "number") {
-        return `${value}${units}`;
-    }
+    if (typeof value === "number") return `${value}${units}`;
 
     // example: 40mg - 50mg
     // here, we handle cases were either `min` or `max` is undefined
     const builder: StringBuilder = new StringBuilder();
     if (value.min) {
         builder.append(`${value.min}${units}`);
-        if (value.max) {
-            builder.append(` - ${value.max}${units}`);
-        }
-    } else if (value.max) {
-        builder.append(`${value.max}${units}`);
-    }
+        if (value.max) builder.append(` - ${value.max}${units}`);
+    } else if (value.max) builder.append(`${value.max}${units}`);
 
     return builder.getContent();
 }

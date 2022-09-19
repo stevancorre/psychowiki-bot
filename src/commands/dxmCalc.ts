@@ -4,7 +4,7 @@ import { Command } from "../core/command";
 import { formatInt } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
 import { replyToMessage } from "../helpers/telegraf";
-import weightMiddleware, { Weight } from "../middlewares/weightMiddleware";
+import weightMiddleware, { Weight } from "../middlewares/weight";
 
 const DxmCalcCommand: Command = {
     name: "dxmcalc",

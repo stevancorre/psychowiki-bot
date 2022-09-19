@@ -1,7 +1,7 @@
 import { Context } from "telegraf";
 
 import { replyToMessage } from "../helpers/telegraf";
-import { findSubstanceInTable } from "../tables/substancesAliases";
+import { findSubstance } from "../tables/substances";
 
 export default async function substanceMiddleware(ctx: Context, next: () => Promise<void>) {
     const message = ctx.message;
@@ -18,7 +18,7 @@ export default async function substanceMiddleware(ctx: Context, next: () => Prom
             replyToMessage(ctx),
         );
 
-    ctx.state.substance = findSubstanceInTable(match.groups.substance);
+    ctx.state.substance = findSubstance(match.groups.substance);
 
     next();
 }

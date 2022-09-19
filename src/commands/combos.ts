@@ -4,9 +4,9 @@ import { Page, Paginator } from "telegraf-paginator";
 import bot from "..";
 import { Command } from "../core/command";
 import { StringBuilder } from "../helpers/stringBuilder";
-import substanceMiddleware from "../middlewares/substanceMiddleware";
+import substanceMiddleware from "../middlewares/substance";
 import { TripSitApiProvider } from "../providers/tripsit";
-import { prettySubstanceName } from "../tables/prettySubstanceNames";
+import { prettySubstance } from "../tables/prettySubstances";
 
 const CombosCommand: Command = {
     name: "combos",
@@ -26,7 +26,7 @@ const CombosCommand: Command = {
 
                 const paginator = new Paginator(pages, {
                     maxPagesPerRow: 2,
-                    header: buildCombosMessageHeader(prettySubstanceName(susbtance)),
+                    header: buildCombosMessageHeader(prettySubstance(susbtance)),
                     footer: buildCombosMessageFooter(),
                 });
 
@@ -43,7 +43,7 @@ export default CombosCommand;
 const buildCombosMessageHeader = (substance: string): string =>
     new StringBuilder()
         .appendTitle(
-            `${prettySubstanceName(substance)} combos informations`,
+            `${prettySubstance(substance)} combos informations`,
             `https://psychonautwiki.org/wiki/${substance}`,
         )
         .getContent();
@@ -64,5 +64,5 @@ const buildCombosPage = (icon: string, title: string, combos: string[]) => ({
 const buildCombosCategory = (icon: string, title: string, combos: string[]): string =>
     new StringBuilder()
         .appendCategoryTitle(icon, title)
-        .appendFor(combos, (builder, substance) => builder.appendLine(`- ${prettySubstanceName(substance)}`))
+        .appendFor(combos, (builder, substance) => builder.appendLine(`- ${prettySubstance(substance)}`))
         .getContent();

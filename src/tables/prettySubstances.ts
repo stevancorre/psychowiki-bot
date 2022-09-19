@@ -29,6 +29,6 @@ export const prettySubstances: Record<string, string> = <const>{
     amt: "AMT",
 };
 
-export const prettySubstanceName = (substance: string): string => {
+export const prettySubstance = (substance: string): string => {
     return prettySubstances[substance] ?? substance;
 };

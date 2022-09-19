@@ -3,7 +3,7 @@ import { Context } from "telegraf";
 import { Command } from "../core/command";
 import { formatExternalLink } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
-import effectMiddleware from "../middlewares/effectMiddleware";
+import effectMiddleware from "../middlewares/effect";
 import { EffectsIndexApiProvider } from "../providers/effect-index";
 import { Effect } from "../providers/effect-index/types/Effect";
 

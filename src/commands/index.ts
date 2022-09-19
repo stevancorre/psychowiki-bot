@@ -10,13 +10,13 @@ import KetamineCalcCommand from "./ketamineCalc";
 import PingCommand from "./ping";
 
 export const commands: Command[] = [
-    PingCommand,
     BreatheCommand,
     ComboChartCommand,
-    DxmCalcCommand,
-    KetamineCalcCommand,
-    InfoCommand,
-    EffectsCommand,
     CombosCommand,
+    DxmCalcCommand,
     EffectInfoCommand,
+    EffectsCommand,
+    InfoCommand,
+    KetamineCalcCommand,
+    PingCommand,
 ];

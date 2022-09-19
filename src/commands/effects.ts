@@ -3,7 +3,7 @@ import { Context } from "telegraf";
 import { Command } from "../core/command";
 import { capitalize } from "../helpers/formatters";
 import { StringBuilder } from "../helpers/stringBuilder";
-import substanceMiddleware from "../middlewares/substanceMiddleware";
+import substanceMiddleware from "../middlewares/substance";
 import { PsychonautWikiApiProvider } from "../providers/psychonaut-wiki";
 import { SubstanceEffects } from "../providers/psychonaut-wiki/types/SubstanceEffect";
 
@@ -23,11 +23,6 @@ export default EffectsCommand;
 const buildSubstanceEffectsMessage = (substanceEffects: SubstanceEffects): string => {
     const susbtanceEffectsIndexUri = `https://psychonautwiki.org/wiki/${substanceEffects.name}#Subjective_effects`;
 
-    const messageBuilder: StringBuilder = new StringBuilder().appendTitle(
-        `${substanceEffects.name} effect informations`,
-        susbtanceEffectsIndexUri,
-    );
-
     const effectsList: StringBuilder = new StringBuilder()
         .appendCategoryTitle("🗒", "Effects (randomly selected)")
         .appendLines(
@@ -44,7 +39,9 @@ const buildSubstanceEffectsMessage = (substanceEffects: SubstanceEffects): strin
             `These effects were randomly selected from a larger list - <a href="${susbtanceEffectsIndexUri}">see all effects</a>`,
         );
 
-    messageBuilder.appendLine(effectsList.getContent()).appendLine(moreInformations.getContent());
-
-    return messageBuilder.getContent();
+    return new StringBuilder()
+        .appendTitle(`${substanceEffects.name} effect informations`, susbtanceEffectsIndexUri)
+        .appendLine(effectsList.getContent())
+        .appendLine(moreInformations.getContent())
+        .getContent();
 };

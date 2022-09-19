@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { prettySubstanceName } from "../../tables/prettySubstanceNames";
+import { prettySubstance } from "../../tables/prettySubstances";
 import { SubstanceCombos } from "./types/SubstanceCombos";
 
 const TRIPSIT_API_ENDPOINT = "http://tripbot.tripsit.me/api/tripsit/getDrug";
@@ -42,7 +42,7 @@ export class TripSitApiProvider {
 
                     for (const [k, v] of Object.entries(combos)) {
                         const key: keyof SubstanceCombos = labels[v.status];
-                        const name: string = prettySubstanceName(k);
+                        const name: string = prettySubstance(k);
 
                         result[key].push(name);
                     }
