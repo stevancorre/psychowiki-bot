@@ -14,7 +14,7 @@ export const registerMiddelwares = (bot: Telegraf) => {
     bot.use(restrictToMiddleware);
 };
 
-export const registerCommands = (bot: Telegraf) => {
+export const registerCommands = async (bot: Telegraf): Promise<void> => {
     for (const command of commands) {
         const [first, ...rest] = [...(command.middlewares ?? []), command.handler];
         bot.command(command.name, first, ...rest);
@@ -22,11 +22,13 @@ export const registerCommands = (bot: Telegraf) => {
 
     logger.info(`Registered ${commands.length} commands`);
 
-    // todo: set bot commands
+    await bot.setMyCommands(commands)
+        .then(() => logger.info("Bot commands set"))
+        .catch((error) => logger.crit(`Error while settings bot commands: ${error}`));
 };
 
-export const startClient = (bot: Telegraf) => {
-    bot.launch()
+export const startClient = async (bot: Telegraf) => {
+    await bot.launch()
         .then(() => logger.info("Ready"))
         .catch(logger.crit);
 };

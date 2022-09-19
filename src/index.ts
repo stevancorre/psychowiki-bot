@@ -12,9 +12,9 @@ const bot = new Telegraf(appConfig.token);
 
 registerCatch(bot);
 registerMiddelwares(bot);
-registerCommands(bot);
+await registerCommands(bot);
 
-startClient(bot);
+await startClient(bot);
 
 handleSignals(bot);
 
