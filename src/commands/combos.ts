@@ -17,6 +17,7 @@ const CombosCommand: Command = {
         const susbtance: string = <string>ctx.state["substance"];
         TripSitApiProvider.combos(susbtance)
             .then(async (combos) => {
+                // build pages and keep only non-empty pages
                 const pages: Page[] = [
                     buildCombosPage("❌", "Dangerous", combos.dangerous),
                     buildCombosPage("⚠️", "Caution", combos.caution),
@@ -63,6 +64,7 @@ const buildCombosMessageFooter = (): string =>
         .getContent();
 
 const buildCombosPage = (icon: string, title: string, combos: string[]) => ({
+    // if there are any combo, build the category, otherwhise nothing
     title: `${icon} ${title}`,
     data: combos.length > 0 ? buildCombosCategory(icon, title, combos) : "",
 });

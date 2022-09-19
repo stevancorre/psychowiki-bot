@@ -11,8 +11,7 @@ const DxmCalcCommand: Command = {
     handler: async (ctx: Context) => {
         const weight = <Weight>ctx.state["weight"];
         if (weight.pounds < 20) {
-            // TODO: better error messages
-            await ctx.reply("Please give a realistic weight");
+            await ctx.replyToMessageWithErrorHTML("Please give a realistic weight");
             return;
         }
 

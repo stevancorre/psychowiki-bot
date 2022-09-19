@@ -19,6 +19,9 @@ type ResponseEffect = {
 };
 
 export class EffectsIndexApiProvider {
+    /**
+     * Fetches informations about a given effect from the EffectIndex api
+     */
     public static infos(effect: string): Promise<Effect> {
         const requestUri = `${EFFECT_INDEX_API_ENDPOINT}${effect}`;
 

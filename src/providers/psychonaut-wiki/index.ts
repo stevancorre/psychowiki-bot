@@ -11,6 +11,9 @@ const API_ENDPOINT = "https://api.psychonautwiki.org/";
 const MAX_EFFECT_COUNT = 10;
 
 export class PsychonautWikiApiProvider {
+    /**
+     * Fetches informations about a given substance from the PsychonautWiki API
+     */
     public static infos(substance: string): Promise<Substance> {
         const requestUri: string = this.buildRequestUri(infoQuery(substance));
 
@@ -26,6 +29,9 @@ export class PsychonautWikiApiProvider {
         );
     }
 
+    /**
+     * Fetches effect informations about a given substance from the PsychonautWiki API
+     */
     public static effects(substance: string): Promise<SubstanceEffects> {
         const requestUri: string = this.buildRequestUri(effectsQuery(substance));
 

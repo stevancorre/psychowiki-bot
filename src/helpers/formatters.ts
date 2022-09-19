@@ -23,7 +23,7 @@ export function formatMinMax(
 }
 
 export function capitalize(value: string): string {
-    if(value === undefined || !value[0]) return "";
+    if (value === undefined || !value[0]) return "";
     return value[0].toUpperCase() + value.slice(1);
 }
 
