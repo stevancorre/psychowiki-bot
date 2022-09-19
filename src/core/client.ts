@@ -1,12 +1,17 @@
 import { Telegraf } from "telegraf";
 
 import { commands } from "../commands";
+import restrictToMiddleware from "../middlewares/restrictTo";
 import logger from "./logging";
 
 export const registerCatch = (bot: Telegraf) => {
     bot.catch((error: unknown) => {
         logger.error(error);
     });
+};
+
+export const registerMiddelwares = (bot: Telegraf) => {
+    bot.use(restrictToMiddleware);
 };
 
 export const registerCommands = (bot: Telegraf) => {

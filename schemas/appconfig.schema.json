@@ -25,6 +25,13 @@
                 "debug",
                 "silly"
             ]
+        },
+        "restrictTo": {
+            "title": "Restrict the bot to specifics channels",
+            "type": "array",
+            "items": {
+                "type": "number"
+            }
         }
     },
     "required": [
