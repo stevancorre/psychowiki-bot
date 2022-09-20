@@ -12,10 +12,10 @@ type Response = {
 type ResponseEffect = {
     name: string;
     summary_raw: string | undefined;
-    external_links: {
+    external_links: ReadonlyArray<{
         url: string;
         title: string;
-    }[];
+    }>;
 };
 
 export class EffectsIndexApiProvider {

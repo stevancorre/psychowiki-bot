@@ -44,11 +44,11 @@ export class StringBuilder {
         return this;
     }
 
-    public appendLineInTags(content: string, ...tags: string[]): StringBuilder {
+    public appendLineInTags(content: string, ...tags: ReadonlyArray<string>): StringBuilder {
         return this.appendInTags(content, ...tags).append("\n");
     }
 
-    public appendLines(...lines: string[]): StringBuilder {
+    public appendLines(...lines: ReadonlyArray<string>): StringBuilder {
         return this.appendLine(lines.join("\n"));
     }
 
@@ -56,7 +56,7 @@ export class StringBuilder {
         return this.append("\n".repeat(count));
     }
 
-    public appendInTags(content: string, ...tags: string[]): StringBuilder {
+    public appendInTags(content: string, ...tags: ReadonlyArray<string>): StringBuilder {
         // opening tags
         for (const tag of tags) {
             this.append(`<${tag}>`);
@@ -66,7 +66,7 @@ export class StringBuilder {
         this.append(content);
 
         // closing tags
-        const reversedTags: string[] = tags.reverse();
+        const reversedTags: ReadonlyArray<string> = new Array<string>(...tags).reverse();
         for (const tag of reversedTags) {
             this.append(`</${tag}>`);
         }

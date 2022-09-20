@@ -7,7 +7,7 @@ import { SubstanceCombos } from "./types/SubstanceCombos";
 const TRIPSIT_API_ENDPOINT = "http://tripbot.tripsit.me/api/tripsit/getDrug";
 
 type Response = {
-    data: ({ combos: Combos } | undefined)[] | undefined;
+    data: ReadonlyArray<{ combos: Combos } | undefined> | undefined;
 };
 
 type Combos = Record<string, { status: string }>;

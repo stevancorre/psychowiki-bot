@@ -1,8 +1,8 @@
 import { MinMax, MinMaxWithUnits } from "./MinMax";
 
 export interface SubstanceClass {
-    chemical: string[] | null;
-    psychoactive: string[] | null;
+    chemical: ReadonlyArray<string> | null;
+    psychoactive: ReadonlyArray<string> | null;
 }
 
 export interface SubstanceTolerance {
@@ -40,7 +40,7 @@ export interface Substance {
     name: string;
     url: string;
     tolerance: SubstanceTolerance | null;
-    roas: SubstanceRoa[];
+    roas: ReadonlyArray<SubstanceRoa>;
     class: SubstanceClass | null;
     addictionPotential: string | null;
 }

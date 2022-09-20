@@ -2,7 +2,7 @@ export interface Effect {
     url: string;
     name: string;
     summary: string;
-    externalLinks: EffectExternalLink[];
+    externalLinks: ReadonlyArray<EffectExternalLink>;
 }
 
 export interface EffectExternalLink {

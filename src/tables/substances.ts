@@ -1,4 +1,4 @@
-export const substancesAliases: Record<string, string | string[]> = {
+export const substancesAliases: Record<string, string | ReadonlyArray<string>> = {
     ketamine: ["ket", "k"],
     "2c-b": ["2cb", "2c b"],
 };

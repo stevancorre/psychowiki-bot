@@ -12,7 +12,7 @@ import InfoCommand from "./info";
 import KetamineCalcCommand from "./ketamineCalc";
 import PingCommand from "./ping";
 
-export const commands: Command[] = [
+export const commands: ReadonlyArray<Command> = [
     BreatheCommand,
     BugCommand,
     ChannelCommand,

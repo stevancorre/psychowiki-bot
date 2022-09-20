@@ -1,6 +1,6 @@
 export interface SubstanceEffects {
     name: string;
-    effects: SubstanceEffect[];
+    effects: ReadonlyArray<SubstanceEffect>;
 }
 
 export interface SubstanceEffect {

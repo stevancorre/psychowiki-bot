@@ -1,8 +1,8 @@
 export interface SubstanceCombos {
-    unsafe: string[];
-    caution: string[];
-    lowRiskAndDecrease: string[];
-    lowRiskNoSynergy: string[];
-    lowRiskAndSynergy: string[];
-    dangerous: string[];
+    unsafe: Array<string>;
+    caution: Array<string>;
+    lowRiskAndDecrease: Array<string>;
+    lowRiskNoSynergy: Array<string>;
+    lowRiskAndSynergy: Array<string>;
+    dangerous: Array<string>;
 }

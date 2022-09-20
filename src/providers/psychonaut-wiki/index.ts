@@ -40,7 +40,7 @@ export class PsychonautWikiApiProvider {
                 .get(requestUri)
                 .then(async (response) => {
                     const responsSubstance = response.data?.data?.substances?.[0];
-                    const effects: SubstanceEffect[] | undefined = responsSubstance?.effects;
+                    const effects: Array<SubstanceEffect> | undefined = responsSubstance?.effects;
                     if (effects === undefined) reject(`No effects infos available for ${substance}`);
                     else {
                         if (effects.length > MAX_EFFECT_COUNT) {

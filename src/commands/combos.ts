@@ -17,7 +17,7 @@ const CombosCommand: Command = {
         TripSitApiProvider.combos(susbtance)
             .then(async (combos) => {
                 // build pages and keep only non-empty pages
-                const pages: Page[] = [
+                const pages: ReadonlyArray<Page> = [
                     buildCombosPage("❌", "Dangerous", combos.dangerous),
                     buildCombosPage("⚠️", "Caution", combos.caution),
                     buildCombosPage("⬆️", "Low Risks & Synergy", combos.caution),
@@ -62,13 +62,13 @@ const buildCombosMessageFooter = (): string =>
         )
         .getContent();
 
-const buildCombosPage = (icon: string, title: string, combos: string[]): Page => ({
+const buildCombosPage = (icon: string, title: string, combos: ReadonlyArray<string>): Page => ({
     // if there are any combo, build the category, otherwhise nothing
     title: `${icon} ${title}`,
     data: combos.length > 0 ? buildCombosCategory(icon, title, combos) : "",
 });
 
-const buildCombosCategory = (icon: string, title: string, combos: string[]): string =>
+const buildCombosCategory = (icon: string, title: string, combos: ReadonlyArray<string>): string =>
     new StringBuilder()
         .appendCategoryTitle(icon, title)
         .appendFor(combos, (builder, substance) => builder.appendLine(`- ${prettySubstance(substance)}`))
