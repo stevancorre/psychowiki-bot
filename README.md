@@ -73,7 +73,7 @@ $ git clone https://github.com/stevancorre/psychowiki-bot.git
 ### Grab a bot token
 
 You can do that here: [core.telegram.org/api](https://core.telegram.org/api).  
-It should looks like `123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11`. <br>
+It should looks like `1234567891:ABCDEF_gHIJK1234LmnoPq56rsTuVWXY789`. <br>
 
 ### Install dependencies
 
@@ -85,7 +85,7 @@ $ pnpm i
 
 ### Configuration
 ```console
-$ pnpm config
+$ pnpm cfg
 ```
 
 ### Build and run
