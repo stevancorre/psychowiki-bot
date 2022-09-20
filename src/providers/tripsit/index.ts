@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "pwb/core/axios";
 import logger from "pwb/core/logging";
 import { prettySubstance } from "pwb/tables/prettySubstances";
 

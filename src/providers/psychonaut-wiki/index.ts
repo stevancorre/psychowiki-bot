@@ -1,5 +1,5 @@
-import axios from "axios";
 import { randomInt } from "crypto";
+import axios from "pwb/core/axios";
 import logger from "pwb/core/logging";
 
 import effectsQuery from "./queries/effects";

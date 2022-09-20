@@ -32,11 +32,17 @@
             "items": {
                 "type": "number"
             }
+        },
+        "cacheLifetime": {
+            "title": "Axios cache lifetime (in seconds)",
+            "type": "number",
+            "minimum": 0
         }
     },
     "required": [
         "$schema",
         "token",
-        "logLevel"
+        "logLevel",
+        "cacheLifetime"
     ]
 }

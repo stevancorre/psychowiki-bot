@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "pwb/core/axios";
 import { Command } from "pwb/core/command";
 import appConfig from "pwb/core/configuration";
 import { Context, Telegraf } from "telegraf";
