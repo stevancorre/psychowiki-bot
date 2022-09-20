@@ -10,16 +10,16 @@ const ALLOWED_COMMANDS: ReadonlyArray<string> = <const>[ChannelCommand.name, Bug
  */
 export default async function restrictToMiddleware(ctx: Context, next: () => Promise<void>): Promise<void> {
     const chat = ctx.chat;
-    const message = ctx.message;
-
-    if (message === undefined) return;
-    if (!("text" in message)) return;
     if (chat?.id === undefined) return;
 
     if (appConfig.restrictTo) {
-        const commandWithMaybePing: string | undefined = message.text.split(" ")[0]?.toLowerCase();
-        const command: string | undefined = commandWithMaybePing?.split("@")[0]?.replace("/", "");
-        if (ALLOWED_COMMANDS.find((x) => x === command)) return next();
+        const message = ctx.message;
+
+        if (message && "text" in message) {
+            const commandWithMaybePing: string | undefined = message.text.split(" ")[0]?.toLowerCase();
+            const command: string | undefined = commandWithMaybePing?.split("@")[0]?.replace("/", "");
+            if (ALLOWED_COMMANDS.find((x) => x === command)) return next();
+        }
 
         if (chat.type === "private") {
             await ctx.replyToMessageWithErrorHTML(
