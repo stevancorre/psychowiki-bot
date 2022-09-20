@@ -4,6 +4,6 @@ import config from "./tsup.config";
 
 export default defineConfig({
     ...config,
-    onSuccess: "eslint . --fix && node dist/index.js",
+    onSuccess: "eslint . --fix && node dist/index.mjs",
     clean: true,
 });

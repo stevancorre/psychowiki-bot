@@ -13,13 +13,13 @@
     "bugs": {
         "url": "https://github.com/stevancorre/psychowiki-bot/issues"
     },
-    "main": "dist/index.js",
+    "main": "dist/index.mjs",
     "scripts": {
         "build": "eslint . --fix && tsup --config tsup.config.prod.ts",
         "dev": "eslint . --fix && tsup --watch --config tsup.config.dev.ts",
         "preinstall": "npx only-allow pnpm",
         "lint": "eslint . --fix --cache",
-        "start": "eslint . --fix && tsup --config tsup.config.prod.ts && node dist/index.js"
+        "start": "eslint . --fix && tsup --config tsup.config.prod.ts && node dist/index.mjs"
     },
     "dependencies": {
         "axios": "^0.27.2",

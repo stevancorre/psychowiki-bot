@@ -5,6 +5,7 @@ const options: Options = {
     target: "node16",
     entry: ["src/index.ts"],
     outDir: "dist",
+    format: "esm",
     sourcemap: true,
     clean: true,
 };
