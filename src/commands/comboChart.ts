@@ -3,7 +3,7 @@ import { Context } from "telegraf";
 
 const ComboChartCommand: Command = {
     name: "combochart",
-    description: "Sends the tripsit's combo chaart",
+    description: "Sends the tripsit's combo chart",
     handler: async (ctx: Context): Promise<void> => {
         await ctx.replyToMessageWithPhoto("https://wiki.tripsit.me/images/3/3a/Combo_2.png");
     },
