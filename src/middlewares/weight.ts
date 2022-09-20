@@ -32,7 +32,7 @@ export default async function weightMiddleware(ctx: Context, next: () => Promise
     const pounds = weight * (units === "kg" ? 2.2 : 1);
 
     if (weight <= 0) {
-        await ctx.reply(`❌ You can't weight less than 0 ${units}!`);
+        await ctx.replyToMessageWithErrorHTML(`You can't weight less than 0 ${units}!`);
         return;
     }
 
