@@ -1,6 +1,7 @@
 import { Command } from "pwb/core/command";
 
 import BreatheCommand from "./breathe";
+import BugCommand from "./bug";
 import ChannelCommand from "./channel";
 import ComboChartCommand from "./comboChart";
 import CombosCommand from "./combos";
@@ -13,6 +14,7 @@ import PingCommand from "./ping";
 
 export const commands: Command[] = [
     BreatheCommand,
+    BugCommand,
     ChannelCommand,
     ComboChartCommand,
     CombosCommand,
