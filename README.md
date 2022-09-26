@@ -83,19 +83,6 @@ Now, you have to install all dependencies:
 $ pnpm i
 ```
 
-❌ You are going to have one missing dependency, `telegraf-paginator`, which is a package i'm currently working on.  
-To add it, run (inside the `psychowiki-bot` folder)
-```console
-# clone and build
-$ cd ..
-$ git clone https://github.com/stevancorre/telegraf-paginator.git --branch dev
-$ cd telegraf-paginator
-$ pnpm build
-
-# then go back to psychowiki-bot
-$ cd ../psychowiki-bot
-```
-
 ### Configuration
 
 ```console

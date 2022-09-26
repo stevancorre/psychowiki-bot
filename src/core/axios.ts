@@ -1,10 +1,10 @@
 import axiosModule from "axios";
 import axiosCache from "axios-cache-adapter";
 
-import appConfig from "./configuration";
+import { env } from "./env";
 
 const cache = axiosCache.setupCache({
-    maxAge: appConfig.cacheLifetime * 60 * 1000,
+    maxAge: env.CACHE_LIFETIME * 60 * 1000,
 });
 
 const axios = axiosModule.create({

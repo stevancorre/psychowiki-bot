@@ -1,6 +1,6 @@
 import BugCommand from "pwb/commands/bug";
 import ChannelCommand from "pwb/commands/channel";
-import appConfig from "pwb/core/configuration";
+import { env } from "pwb/core/env";
 import { Context } from "telegraf";
 
 const ALLOWED_COMMANDS: ReadonlyArray<string> = <const>[ChannelCommand.name, BugCommand.name];
@@ -12,7 +12,7 @@ export default async function restrictToMiddleware(ctx: Context, next: () => Pro
     const chat = ctx.chat;
     if (chat?.id === undefined) return;
 
-    if (appConfig.restrictTo) {
+    if (env.RESTRICT_TO) {
         const message = ctx.message;
 
         if (message && "text" in message) {
@@ -28,7 +28,7 @@ export default async function restrictToMiddleware(ctx: Context, next: () => Pro
             return;
         }
 
-        if (appConfig.restrictTo.find((x) => x === chat.id) === undefined) {
+        if (env.RESTRICT_TO.find((x) => x === chat.id) === undefined) {
             await ctx.replyToMessageWithErrorHTML(
                 "The bot isn't currently available in this channel.\nIt is currently in early alpha, and will be open to everyone soon",
             );

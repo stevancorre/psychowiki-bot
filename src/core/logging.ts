@@ -1,6 +1,6 @@
 import { createLogger, format, Logger, transports } from "winston";
 
-import appConfig from "./configuration";
+import { env } from "./env";
 
 const { colorize, combine, json, prettyPrint, printf, simple, timestamp } = format;
 const { File, Console } = transports;
@@ -25,6 +25,6 @@ const appLogger: Logger = createLogger({
         json(),
         prettyPrint(),
     ),
-    level: appConfig.logLevel,
+    level: env.LOG_LEVEL,
 });
 export default appLogger;

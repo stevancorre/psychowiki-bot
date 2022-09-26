@@ -9,6 +9,7 @@ specifiers:
   ansi-colors: ^4.1.3
   axios: ^0.27.2
   axios-cache-adapter: ^2.7.3
+  dotenv: ^16.0.2
   eslint: ^8.23.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.2.1
@@ -20,16 +21,19 @@ specifiers:
   tsup: ^6.2.3
   typescript: 4.7.4
   winston: ^3.8.1
+  zod: ^3.19.1
 
 dependencies:
   '@inquirer/confirm': 0.0.25-alpha.0
   ansi-colors: 4.1.3
   axios: 0.27.2
   axios-cache-adapter: 2.7.3_axios@0.27.2
+  dotenv: 16.0.2
   inquirer: 9.1.2
   telegraf: 4.9.0
   telegraf-paginator: github.com/stevancorre/telegraf-paginator/69d7f28574dce6c5b138a95af0e4f1937944a9fd
   winston: 3.8.1
+  zod: 3.19.1
 
 devDependencies:
   '@types/inquirer': 9.0.1
@@ -667,6 +671,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv/16.0.2:
+    resolution: {integrity: sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA==}
+    engines: {node: '>=12'}
+    dev: false
 
   /eastasianwidth/0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -2228,6 +2237,10 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
+
+  /zod/3.19.1:
+    resolution: {integrity: sha512-LYjZsEDhCdYET9ikFu6dVPGp2YH9DegXjdJToSzD9rO6fy4qiRYFoyEYwps88OseJlPyl2NOe2iJuhEhL7IpEA==}
+    dev: false
 
   github.com/MKRhere/typegram/e2ba9f01f14b96c6dbb1c617e66692a3cc776cf6:
     resolution: {tarball: https://codeload.github.com/MKRhere/typegram/tar.gz/e2ba9f01f14b96c6dbb1c617e66692a3cc776cf6}

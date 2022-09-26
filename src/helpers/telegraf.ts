@@ -1,6 +1,6 @@
 import axios from "pwb/core/axios";
 import { Command } from "pwb/core/command";
-import appConfig from "pwb/core/configuration";
+import { env } from "pwb/core/env";
 import { Context, Telegraf } from "telegraf";
 import { Message } from "telegraf/typings/core/types/typegram";
 
@@ -32,6 +32,6 @@ Telegraf.prototype.setMyCommands = async function (commands: ReadonlyArray<Comma
         })),
     };
 
-    const url = `https://api.telegram.org/bot${appConfig.token}/setMyCommands`;
+    const url = `https://api.telegram.org/bot${env.TOKEN}/setMyCommands`;
     return axios.post(url, data);
 };

@@ -5,10 +5,10 @@ import {
     registerMiddelwares,
     startClient,
 } from "pwb/core/client";
-import appConfig from "pwb/core/configuration";
+import { env } from "pwb/core/env";
 import { Telegraf } from "telegraf";
 
-const bot = new Telegraf(appConfig.token);
+const bot = new Telegraf(env.TOKEN);
 
 registerCatch(bot);
 registerMiddelwares(bot);
