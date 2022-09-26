@@ -1,1 +1,1 @@
-worker=dist/index.mjs
+worker: node dist/index.mjs
